@@ -126,12 +126,12 @@
 
 # Part 2: “Drop Zone” Lab
 ----------
-### Set up.
+## **Set up.**
 
-### Log in using the following credentials:
+### **Log in using the following credentials:**
 
-### Username: sysadmin
-### Password: cybersecurity
+### **Username: sysadmin**
+### **Password: cybersecurity**
 ---------
 ## *Uninstall UFW.*
 
@@ -139,7 +139,7 @@
 
 - ### Run the command that removes any running instance of UFW.
 
-     $ sudo apt remove ufw 
+      $ sudo apt remove ufw 
 
 
 ### *Enable and start firewalld.*
@@ -166,7 +166,7 @@
 
 - ### *Run the command that lists all currently configured firewall rules:*
 
-    $ sudo firewall-cmd —-list-all
+     $ sudo firewall-cmd —-list-all
 
 
 - ### *Take note of what zones and settings are configured. You may need to remove unneeded services and settings.*
@@ -175,7 +175,7 @@
 
 - ### *Run the command that lists all currently supported services to find out whether the service you need is available.*
 
-     $sudo firewall-cmd —-get-service 
+         $sudo firewall-cmd —-get-service 
 
 
 ### *Notice that the home and drop zones are created by default.*
@@ -184,7 +184,7 @@
 
 ### *Run the command that lists all currently configured zones.*
 
-     $ sudo firewall-cmd —-list-all-zones
+         $ sudo firewall-cmd —-list-all-zones
 
 
 ### *Notice that the public and drop zones are created by default. Therefore, you will need to create zones for web, sales, and mail.*
@@ -197,6 +197,7 @@
      $ sudo firewall-cmd -—permanent —-new-zone=mail
      $ sudo firewall-cmd —-permanent —-new-zone=sales
 ![](https://github.com/dobyfreejr/Network-Security/blob/f3e786fcc011a6169be142532d794fcd1410f612/img/First-Picture.png)
+![] 
 
 Set the zones to their designated interfaces.
 
