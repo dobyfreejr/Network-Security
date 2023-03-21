@@ -166,7 +166,7 @@
 
 - ### *Run the command that lists all currently configured firewall rules:*
 
-     $ sudo firewall-cmd —-list-all
+      $ sudo firewall-cmd —-list-all
 
 
 - ### *Take note of what zones and settings are configured. You may need to remove unneeded services and settings.*
@@ -175,7 +175,7 @@
 
 - ### *Run the command that lists all currently supported services to find out whether the service you need is available.*
 
-         $sudo firewall-cmd —-get-service 
+      $sudo firewall-cmd —-get-service 
 
 
 ### *Notice that the home and drop zones are created by default.*
@@ -184,7 +184,7 @@
 
 ### *Run the command that lists all currently configured zones.*
 
-         $ sudo firewall-cmd —-list-all-zones
+      $ sudo firewall-cmd —-list-all-zones
 
 
 ### *Notice that the public and drop zones are created by default. Therefore, you will need to create zones for web, sales, and mail.*
@@ -197,309 +197,223 @@
      $ sudo firewall-cmd -—permanent —-new-zone=mail
      $ sudo firewall-cmd —-permanent —-new-zone=sales
 ![](https://github.com/dobyfreejr/Network-Security/blob/f3e786fcc011a6169be142532d794fcd1410f612/img/First-Picture.png)
-![] 
+![](https://github.com/dobyfreejr/Network-Security/blob/e5f415b4522e8a6248206dad9cd5046f7f8bfbce/img/Second-picture.png)
+![](https://github.com/dobyfreejr/Network-Security/blob/e5f415b4522e8a6248206dad9cd5046f7f8bfbce/img/Tihird-Picture.png)
+### *Set the zones to their designated interfaces.*
+----------
+### *Run the commands that set your eth interfaces to your zones.*
 
-Set the zones to their designated interfaces.
+     $ sudo firewall-cmd —-zone=public —-change-interface=eth0
+     $ sudo firewall-cmd —-zone=web —-change-interface=eth1
+     $ sudo firewall-cmd —-zone=sales —-change-interface=eth2
+     $ sudo firewall-cmd —-zone=mail —-change-interface=eth3
+![](https://github.com/dobyfreejr/Network-Security/blob/e5f415b4522e8a6248206dad9cd5046f7f8bfbce/img/Fourth-pictture.png)
 
-Run the commands that set your eth interfaces to your zones.
+### *Add services to the active zones.*
 
-$ sudo firewall-cmd —-zone=public —-change-interface=eth0
-$ sudo firewall-cmd —-zone=web —-change-interface=eth1
-$ sudo firewall-cmd —-zone=sales —-change-interface=eth2
-$ sudo firewall-cmd —-zone=mail —-change-interface=eth3
+### *Run the commands that add services to the public zone, the web zone, the sales zone, and the mail zone.*
 
+### **public:**
 
-Add services to the active zones.
-
-Run the commands that add services to the public zone, the web zone, the sales zone, and the mail zone.
-
-public:
-
-$ sudo firewall-cmd --permanent --zone=public --add-service=http  
-$ sudo firewall-cmd --permanent --zone=public --add-service=https  
-$ sudo firewall-cmd --permanent --zone=public --add-service=pop3  
-$ sudo firewall-cmd --permanent --zone=public --add-service=smtp
-
-
-web:
-
-$ sudo firewall-cmd --permanent --zone=web --add-service=http
+     $ sudo firewall-cmd --permanent --zone=public --add-service=http  
+     $ sudo firewall-cmd --permanent --zone=public --add-service=https  
+     $ sudo firewall-cmd --permanent --zone=public --add-service=pop3  
+     $ sudo firewall-cmd --permanent --zone=public --add-service=smtp
 
 
-sales:
+### **web:**
 
-sudo firewall-cmd --permanent --zone=sales --add-service=https 
-
-
-mail:
-
-$ sudo firewall-cmd --permanent --zone=mail --add-service=smtp  
-$ sudo firewall-cmd --permanent --zone=mail --add-service=pop3 
+     $ sudo firewall-cmd --permanent --zone=web --add-service=http
 
 
-What is the status of http, https, smtp and pop3?
+### **sales:**
+
+     sudo firewall-cmd --permanent --zone=sales --add-service=https 
+
+
+### **mail:**
+
+     $ sudo firewall-cmd --permanent --zone=mail --add-service=smtp  
+     $ sudo firewall-cmd --permanent --zone=mail --add-service=pop3 
+![](https://github.com/dobyfreejr/Network-Security/blob/e5f415b4522e8a6248206dad9cd5046f7f8bfbce/img/Fiifth-picture.png)
+
+### *What is the status of http, https, smtp and pop3?*
+![](https://github.com/dobyfreejr/Network-Security/blob/e5f415b4522e8a6248206dad9cd5046f7f8bfbce/img/six-picture.png)
+![](https://github.com/dobyfreejr/Network-Security/blob/e5f415b4522e8a6248206dad9cd5046f7f8bfbce/img/seven-picture.png)
+![](https://github.com/dobyfreejr/Network-Security/blob/e5f415b4522e8a6248206dad9cd5046f7f8bfbce/img/eight-picture.png)
+![](https://github.com/dobyfreejr/Network-Security/blob/e5f415b4522e8a6248206dad9cd5046f7f8bfbce/img/Nine-Pictures.png)
+
+### *Add your adversaries to the drop zone.*
+
+### *Run the command that will add all current and any future blacklisted IPs to the drop zone.*
+
+     $ sudo firewall-cmd --permanent --zone=drop --add-source=10.208.56.23  
+     $ sudo firewall-cmd --permanent --zone=drop --add-source=135.95.103.76  
+     $ sudo firewall-cmd --permanent --zone=drop --add-source=76.34.169.118
+![](https://github.com/dobyfreejr/Network-Security/blob/e5f415b4522e8a6248206dad9cd5046f7f8bfbce/img/Ten-picture.png)
+
+### *Make rules permanent, then reload them.*
+
+### *It's good practice to ensure that your firewalld installation remains nailed up and retains its services across reboots. This helps ensure that the network remains secure after unplanned outages such as power failures.*
+
+### *Run the command that reloads the firewalld configurations and writes it to memory:*
+
+     sudo firewall-cmd --reload
+
+
+### *View active zones.*
+
+### *Now, provide truncated listings of all currently active zones. This is a good time to verify your zone settings.*
+
+### *Run the command that displays all zone services.*
+
+     $ sudo firewall-cmd —-get-active-zones 
+![](https://github.com/dobyfreejr/Network-Security/blob/e5f415b4522e8a6248206dad9cd5046f7f8bfbce/img/Eleven-picture.png)
+
+### *Block an IP address.*
+
+### *Use a rich-rule that blocks the IP address 138.138.0.3 on your public zone.*
+
+     $ sudo firewall-cmd --zone=public --add-rich-rule='rule family="ipv4" source address="138.138.0.3" reject'
 
 
 
 
-Add your adversaries to the drop zone.
+### *Block ping/ICMP requests.*
 
-Run the command that will add all current and any future blacklisted IPs to the drop zone.
+### *Harden your network against ping scans by blocking icmp ehco replies.*
 
-$ sudo firewall-cmd --permanent --zone=drop --add-source=10.208.56.23  
-$ sudo firewall-cmd --permanent --zone=drop --add-source=135.95.103.76  
-$ sudo firewall-cmd --permanent --zone=drop --add-source=76.34.169.118
+- ### *Run the command that blocks pings and icmp requests in your public zone.*
 
+     $ sudo firewall-cmd --zone=public --add-icmp-block=echo-reply --add-icmp-block=echo-request
+![](https://github.com/dobyfreejr/Network-Security/blob/e5f415b4522e8a6248206dad9cd5046f7f8bfbce/img/Twelve-picture.png)
 
-Make rules permanent, then reload them.
+### *Rule check.*
 
-It's good practice to ensure that your firewalld installation remains nailed up and retains its services across reboots. This helps ensure that the network remains secure after unplanned outages such as power failures.
+### *Now that you've set up your brand new firewalld installation, it's time to verify that all of the settings have taken effect.*
 
-Run the command that reloads the firewalld configurations and writes it to memory:
+### *Run the command that lists all of the rule settings. Do one command at a time for each zone.*
 
-sudo firewall-cmd --reload
-
-
-View active zones.
-
-Now, provide truncated listings of all currently active zones. This is a good time to verify your zone settings.
-
-Run the command that displays all zone services.
-
-$ sudo firewall-cmd —-get-active-zones 
+     $ sudo firewall-cmd --zone=public --list-all  
+     $ sudo firewall-cmd --zone=sales --list-all
+     $ sudo firewall-cmd --zone=mail --list-all
+     $ sudo firewall-cmd --zone=web --list-all
+     $ sudo firewall-cmd --permanent --zone=drop --list-all
 
 
-Block an IP address.
+### *Are all of the rules in place? If not, then go back and make the necessary modifications before checking again.*
 
-Use a rich-rule that blocks the IP address 138.138.0.3 on your public zone.
-
-$ sudo firewall-cmd --zone=public --add-rich-rule='rule family="ipv4" source address="138.138.0.3" reject'
+### *Congratulations! You have successfully configured and deployed a fully comprehensive firewalld installation.*
 
 
+## Part 3: IDS, IPS, DiD and Firewalls
 
+### *Now, you’ll work on another lab. Before you start, complete the following review questions.*
 
-Block ping/ICMP requests.
+### *IDS vs. IPS Systems*
 
-Harden your network against ping scans by blocking icmp ehco replies.
+### *1.Name and define two ways an IDS connects to a network.*
 
-Run the command that blocks pings and icmp requests in your public zone.
-
-$ sudo firewall-cmd --zone=public --add-icmp-block=echo-reply --add-icmp-block=echo-request
-
-
-Rule check.
-
-Now that you've set up your brand new firewalld installation, it's time to verify that all of the settings have taken effect.
-
-Run the command that lists all of the rule settings. Do one command at a time for each zone.
-
-$ sudo firewall-cmd --zone=public --list-all  
-$ sudo firewall-cmd --zone=sales --list-all
-$ sudo firewall-cmd --zone=mail --list-all
-$ sudo firewall-cmd --zone=web --list-all
-$ sudo firewall-cmd --permanent --zone=drop --list-all
-
-
-Are all of the rules in place? If not, then go back and make the necessary modifications before checking again.
-
-Congratulations! You have successfully configured and deployed a fully comprehensive firewalld installation.
-
-
-Part 3: IDS, IPS, DiD and Firewalls
-
-Now, you’ll work on another lab. Before you start, complete the following review questions.
-
-IDS vs. IPS Systems
-
-Name and define two ways an IDS connects to a network.
-
-Network-based Intrusion Detection System Monitors traffic at the network level from all devices going in and out. It analyzes traffic looking for patterns and abnormal behaviors then a warning is sent.
+     Network-based Intrusion Detection System Monitors traffic at the network level from all devices going in and out. It analyzes traffic looking for patterns and abnormal behaviors then a warning is sent.
 
   
-Host-based Intrusion Detection system monitors the entire network for system data and looks for malicious activity and an individual host. It can take snapshots and if they change over time maliciously an alert is raised. Its also analyzes the changes management in operating system logs, files and as well as software
+     Host-based Intrusion Detection system monitors the entire network for system data and looks for malicious activity and an individual host. It can take snapshots and if they change over time maliciously an alert is raised. Its also analyzes the changes management in operating system logs, files and as well as software
 
 
-Describe how an IPS connects to a network.
+### *2.Describe how an IPS connects to a network.*
 
-An IPS is usually connect to a mirror port on a switch located direct behind the firewall and monitors traffic for suspicious behavior 
+     An IPS is usually connect to a mirror port on a switch located direct behind the firewall and monitors traffic for suspicious behavior 
 
 
-What type of IDS compares patterns of traffic to predefined signatures and is unable to detect zero-day attacks?
+### *3.What type of IDS compares patterns of traffic to predefined signatures and is unable to detect zero-day attacks?*
 
-A signature-based IDS is usable to detect zero-days as it compares traffic from a set of predefined lists and lack the inherent functionality to filter anything outside of those domains
+     A signature-based IDS is usable to detect zero-days as it compares traffic from a set of predefined lists and lack the inherent functionality to filter anything outside of those domains
 
 
-What type of IDS is beneficial for detecting all suspicious traffic that deviates from the well-known baseline and is excellent at detecting when an attacker probes or sweeps a network?
+### *4.What type of IDS is beneficial for detecting all suspicious traffic that deviates from the well-known baseline and is excellent at detecting when an attacker probes or sweeps a network?*
 
-Anomaly-based network intrusion detection plays a vital role in protecting network against malicious activities 
+     Anomaly-based network intrusion detection plays a vital role in protecting network against malicious activities 
 
 
 
-Defense in Depth
+### Defense in Depth
 
-For each of the following scenarios, provide the layer of defense in depth that applies:
+#### *For each of the following scenarios, provide the layer of defense in depth that applies:*
 
-A criminal hacker tailgates an employee through an exterior door into a secured facility, explaining that they forgot their badge at home.
+### *A criminal hacker tailgates an employee through an exterior door into a secured facility, explaining that they forgot their badge at home.*
 
-Administrative policy 
+    Administrative policy 
 
+### **A zero-day goes undetected by antivirus software.**
 
-A zero-day goes undetected by antivirus software.
+     Technical Software
 
-Technical Software 
+### **A criminal successfully gains access to HR’s database.**
 
+    Technical Network
 
-A criminal successfully gains access to HR’s database.
+### ** A criminal hacker exploits a vulnerability within an operating system.**
 
-Technical Network
+    Technical Software
 
 
-A criminal hacker exploits a vulnerability within an operating system.
+### **A hacktivist organization successfully performs a DDoS attack, taking down a government website.**
 
-Technical Software
+     Technical Network
 
 
-A hacktivist organization successfully performs a DDoS attack, taking down a government website.
+### **Data is classified at the wrong classification level.**
 
-Technical Network
+     Administrative procedures
 
 
-Data is classified at the wrong classification level.
+### **A state-sponsored hacker group successfully firewalked an organization to produce a list of active services on an email server.**
 
-Administrative procedures
+     Administrative network 
 
 
-A state-sponsored hacker group successfully firewalked an organization to produce a list of active services on an email server.
+### **Name one method of protecting data-at-rest from being readable on hard drive.**
 
-Administrative network 
+     Drive Encryptions
 
 
-Name one method of protecting data-at-rest from being readable on hard drive.
+### **Name one method of protecting data-in-transit.**
 
-Drive Encryptions
+     Data Encryptions
 
 
-Name one method of protecting data-in-transit.
+### **What technology could provide law enforcement with the ability to track and recover a stolen laptop?**
 
-Data Encryptions
+     Network cards(NIC)  software such as find my…
 
 
-What technology could provide law enforcement with the ability to track and recover a stolen laptop?
+### **How could you prevent an attacker from booting a stolen laptop using an external hard drive?**
 
-Network cards(NIC)  software such as find my…
+     Disk encyrptions with strong passwords. 
 
 
-How could you prevent an attacker from booting a stolen laptop using an external hard drive?
+### Firewall Architectures and Methodologies
+------
+### *Which type of firewall verifies the three-way TCP handshake? TCP handshake checks are designed to ensure that session packets are from legitimate sources.*
 
-Disk encyrptions with strong passwords. 
+     There are a few capable of TCP Handshake (Ciruit-Level Gateway , Stateful Inspection firewalls, Proxy Firewalls and Next Generation firewalls)
 
 
-Firewall Architectures and Methodologies
+### *Which type of firewall considers the connection as a whole? Meaning, instead of considering only individual packets, these firewalls consider whole streams of packets at one time.*
 
-Which type of firewall verifies the three-way TCP handshake? TCP handshake checks are designed to ensure that session packets are from legitimate sources.
+     Stateful Inspection firewalls
 
-There are a few capable of TCP Handshake (Ciruit-Level Gateway , Stateful Inspection firewalls, Proxy Firewalls and Next Generation firewalls)
 
+### *Which type of firewall intercepts all traffic prior to forwarding it to its final destination? In a sense, these firewalls act on behalf of the recipient by ensuring the traffic is safe prior to forwarding it.*
 
-Which type of firewall considers the connection as a whole? Meaning, instead of considering only individual packets, these firewalls consider whole streams of packets at one time.
+     Proxy firewall
 
-Stateful Inspection firewalls
 
+### *Which type of firewall examines data within a packet as it progresses through a network interface by examining source and destination IP address, port number, and packet type—all without opening the packet to inspect its contents?*
 
-Which type of firewall intercepts all traffic prior to forwarding it to its final destination? In a sense, these firewalls act on behalf of the recipient by ensuring the traffic is safe prior to forwarding it.
+     Packet filtering firewall
 
-Proxy firewall
 
+### *Which type of firewall filters solely based on source and destination MAC address?*
 
-Which type of firewall examines data within a packet as it progresses through a network interface by examining source and destination IP address, port number, and packet type—all without opening the packet to inspect its contents?
-
-Packet filtering firewall
-
-
-Which type of firewall filters solely based on source and destination MAC address?
-
-Next generation firewall
-
-
-
-Bonus Lab: “Green Eggs & SPAM”
-
-In this activity, you will target spam, uncover its whereabouts, and attempt to discover the intent of the attacker.
- 
-You will assume the role of a junior security administrator working for the Department of Technology for the State of California.
- 
-As a junior administrator, your primary role is to perform the initial triage of alert data: the initial investigation and analysis followed by an escalation of high-priority alerts to senior incident handlers for further review.
- 
-You will work as part of a Computer and Incident Response Team (CIRT), responsible for compiling threat intelligence as part of your incident report.
-
-Threat Intelligence Card
-
-Note: Log in to the Security Onion VM, and use the following indicator of attack to complete this portion of the assignment. 
-
-
-Locate the indicator of attack in Sguil based off of the following:
-
-Source IP/port: 188.124.9.56:80
-Destination address/port: 192.168.3.35:1035
-Event message: ET TROJAN JS/Nemucod.M.gen downloading EXE payload
-
-Answer the following questions:
-
-What was the indicator of an attack? (Hint: What do the details reveal?)
-
-Trojan Downloader of JSnemucod which is download rins additional malicious files onto a system .These files are typically info stealers
-
-
-What was the adversarial motivation (purpose of the attack)?
-
-Downloading malware including 
-
-
-Describe observations and indicators that may be related to the perpetrators of the intrusion. Categorize your insights according to the appropriate stage of the cyber kill chain, as structured in the following table:
-
-TTP
-Example
-Findings
-Reconnaissance
-How did the attacker locate the victim?
-
-
-Weaponization
-What was downloaded?
-
-
-Delivery
-How was it downloaded?
-
-
-Exploitation
-What does the exploit do?
-
-
-Installation
-How is the exploit installed?
-
-
-Command & Control (C2)
-How does the attacker gain control of the remote machine?
-
-
-Actions on Objectives
-What does the software that the attacker sent do to complete its tasks?
-
-
-
-
-What are your recommended mitigation strategies?
-
-[Enter answer here]
-
-
-List your third-party references.
-
-[Enter answer here]
-
-
-
-
-[def]: https://github.com/dobyfreejr/Network-Security/blob/f3e786fcc011a6169be142532d794fcd1410f612/img/First-Picture.png
+     Next generation firewall
