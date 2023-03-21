@@ -196,7 +196,7 @@
      $ sudo firewall-cmd —-permanent -–new-zone=web
      $ sudo firewall-cmd -—permanent —-new-zone=mail
      $ sudo firewall-cmd —-permanent —-new-zone=sales
-![First-Picture] (https://github.com/dobyfreejr/Network-Security/blob/f3e786fcc011a6169be142532d794fcd1410f612/img/First-Picture.png)
+![] (https://github.com/dobyfreejr/Network-Security/blob/f3e786fcc011a6169be142532d794fcd1410f612/img/First-Picture.png)
 
 Set the zones to their designated interfaces.
 
