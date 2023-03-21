@@ -160,43 +160,43 @@
      $ sudo systemctl status firewalld.service 
 
 
-List all firewall rules currently configured.
+### *List all firewall rules currently configured.*
+------ 
+### *Next, list all currently configured firewall rules. This will give you a good idea of what’s currently configured and save you time in the long run by ensuring that you don’t duplicate work that’s already done.*
 
-Next, list all currently configured firewall rules. This will give you a good idea of what’s currently configured and save you time in the long run by ensuring that you don’t duplicate work that’s already done.
+- ### *Run the command that lists all currently configured firewall rules:*
 
-Run the command that lists all currently configured firewall rules:
-
-$ sudo firewall-cmd —-list-all
-
-
-Take note of what zones and settings are configured. You may need to remove unneeded services and settings.
-
-List all supported service types that can be enabled.
-
-Run the command that lists all currently supported services to find out whether the service you need is available.
-
-$sudo firewall-cmd —-get-service 
+    $ sudo firewall-cmd —-list-all
 
 
-Notice that the home and drop zones are created by default.
+- ### *Take note of what zones and settings are configured. You may need to remove unneeded services and settings.*
 
-Zone views.
+### *List all supported service types that can be enabled.*
 
-Run the command that lists all currently configured zones.
+- ### *Run the command that lists all currently supported services to find out whether the service you need is available.*
 
-$ sudo firewall-cmd —-list-all-zones
+     $sudo firewall-cmd —-get-service 
 
 
-Notice that the public and drop zones are created by default. Therefore, you will need to create zones for web, sales, and mail.
+### *Notice that the home and drop zones are created by default.*
 
-Create zones for web, sales, and mail.
+### *Zone views.*
 
-Run the commands that create web, sales, and mail zones.
+### *Run the command that lists all currently configured zones.*
 
-$ sudo firewall-cmd —-permanent -–new-zone=web
-$ sudo firewall-cmd -—permanent —-new-zone=mail
-$ sudo firewall-cmd —-permanent —-new-zone=sales
+     $ sudo firewall-cmd —-list-all-zones
 
+
+### *Notice that the public and drop zones are created by default. Therefore, you will need to create zones for web, sales, and mail.*
+
+- ### *Create zones for web, sales, and mail.*
+
+### *Run the commands that create web, sales, and mail zones.*
+
+     $ sudo firewall-cmd —-permanent -–new-zone=web
+     $ sudo firewall-cmd -—permanent —-new-zone=mail
+     $ sudo firewall-cmd —-permanent —-new-zone=sales
+![First-Picture] (https://github.com/dobyfreejr/Network-Security/blob/f3e786fcc011a6169be142532d794fcd1410f612/img/First-Picture.png)
 
 Set the zones to their designated interfaces.
 
@@ -499,3 +499,6 @@ List your third-party references.
 [Enter answer here]
 
 
+
+
+[def]: https://github.com/dobyfreejr/Network-Security/blob/f3e786fcc011a6169be142532d794fcd1410f612/img/First-Picture.png
